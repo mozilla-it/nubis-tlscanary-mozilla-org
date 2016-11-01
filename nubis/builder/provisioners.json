@@ -1,0 +1,17 @@
+{
+"provisioners": [
+  {
+    "type": "file",
+    "source": "./ssl_compat",
+    "destination": "/tmp/ssl_compat",
+    "order": "1"
+  },
+  {
+    "type": "shell",
+    "inline": [
+      "sudo /bin/bash /opt/admin-scripts/update-site.sh"
+    ],
+    "order": "99"
+  }
+]
+}
