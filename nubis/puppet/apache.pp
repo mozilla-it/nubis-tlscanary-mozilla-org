@@ -35,7 +35,7 @@ file { '/etc/apache2/conf-enabled/https-redirect.conf':
   require =>  Package['httpd'],
 }
 
-exec { 'a2enmod rewrite':
-  command => 'a2enmod rewrite',
+exec { '/usr/sbin/a2enmod rewrite':
+  command => '/usr/sbin/a2enmod rewrite',
   require => Package['httpd'],
 }
