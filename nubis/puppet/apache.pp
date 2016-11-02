@@ -25,12 +25,3 @@ service { 'httpd':
     'Debian' => 'apache2'
   }
 }
-
-file { '/etc/apache2/conf-enabled/https-redirect.conf':
-  ensure  => file,
-  owner   => root,
-  group   => root,
-  mode    => '0644',
-  source  => 'puppet:///nubis/files/https-redirect.conf',
-  require =>  Package['httpd'],
-}
