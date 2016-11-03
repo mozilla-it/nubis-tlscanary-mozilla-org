@@ -25,8 +25,7 @@ class {
         proxy_ips => [ '127.0.0.1', '10.0.0.0/8' ];
 }
 
-apache::vhost {
-  $::vhost_name:
+apache::vhost { 'tlscanary':
     port              => 80,
     default_vhost     => true,
     docroot           => '/var/www/html',
