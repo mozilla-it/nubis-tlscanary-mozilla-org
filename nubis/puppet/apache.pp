@@ -12,39 +12,33 @@ nubis::discovery::service { "$project_name":
  interval => '30s',
 }
 
-package { 'httpd':
-  ensure => latest,
-  name => $::osfamily ? {
-    'RedHat' => 'httpd',
-    'Debian' => 'apache2'
-  }
+class {
+    'apache':
+        default_mods        => true,
+        default_vhost       => false,
+        default_confd_files => false,
+        service_enable      => false,
+        service_ensure      => false;
+    'apache::mod::status':;
+    'apache::mod::remoteip':
+        proxy_ips => [ '127.0.0.1', '10.0.0.0/8' ];
 }
 
-service { 'httpd':
-  ensure => running,
-  enable => true,
-  hasrestart => true,
-  hasstatus => true,
-  restart => '/usr/bin/apachectl graceful',
-  start => '/usr/sbin/apachectl start',
-  status => '/etc/init.d/httpd status',
-  require => Package['httpd'],
-  name => $::osfamily ? {
-    'RedHat' => 'httpd',
-    'Debian' => 'apache2'
-  }
-}
+apache::vhost { $::vhost_name:
+    port                        => 80,
+    default_vhost               => true,
+    docroot                     => '/var/www/html',
+    docroot_owner               => 'root',
+    docroot_group               => 'root',
+    block                       => ['scm'],
+    setenvif                    => 'X_FORWARDED_PROTO https HTTPS=on',
+    access_log_format           => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
 
-file { '/etc/apache2/conf-enabled/https-redirect.conf':
-  ensure  => file,
-  owner   => root,
-  group   => root,
-  mode    => '0644',
-  source  => 'puppet:///nubis/files/https-redirect.conf',
-  require =>  Package['httpd'],
-}
-
-exec { '/usr/sbin/a2enmod rewrite':
-  command => '/usr/sbin/a2enmod rewrite',
-  require => Package['httpd'],
+    rewrites => [
+      {
+        comment      => 'HTTPS redirect',
+        rewrite_cond => ['%{HTTP:X-Forwarded-Proto}=http'],
+        rewrite_rule => ['. https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]'],
+      }
+    ]
 }
