@@ -3,6 +3,15 @@
 # https://github.com/puppetlabs/puppetlabs-apache
 #
 
+include nubis_discovery
+
+nubis::discovery::service { "$project_name":
+ tags     => [ 'apache' ],
+ port     => 80,
+ check    => "/usr/bin/curl -If http://localhost:80",
+ interval => '30s',
+}
+
 package { 'httpd':
   ensure => latest,
   name => $::osfamily ? {
