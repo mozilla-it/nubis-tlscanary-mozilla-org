@@ -21,13 +21,8 @@ package { 'httpd':
 }
 
 service { 'httpd':
-  ensure => running,
-  enable => true,
-  hasrestart => true,
-  hasstatus => true,
-  restart => '/usr/bin/apachectl graceful',
-  start => '/usr/sbin/apachectl start',
-  status => '/etc/init.d/httpd status',
+  ensure => stopped,
+  enable => false,
   require => Package['httpd'],
   name => $::osfamily ? {
     'RedHat' => 'httpd',
