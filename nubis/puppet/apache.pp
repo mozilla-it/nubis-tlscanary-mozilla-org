@@ -29,6 +29,7 @@ apache::vhost { 'tlscanary':
     port              => 80,
     default_vhost     => true,
     docroot           => '/var/www/html',
+    directoryindex    => 'index.htm',
     docroot_owner     => 'root',
     docroot_group     => 'root',
     block             => ['scm'],
