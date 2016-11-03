@@ -1,8 +1,0 @@
-#!/bin/bash -l
-# Runs once on instance boot, after all infra services are up and running
-
-# Pull latest version
-/opt/admin-scripts/update-site.sh
-
-# Start serving it
-service httpd start
