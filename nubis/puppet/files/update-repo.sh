@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -l
 # Update the local copy of this site's git repository
 # Copy the contents to the web root.
 #
