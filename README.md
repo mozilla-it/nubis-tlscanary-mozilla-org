@@ -1,3 +1,5 @@
+![build badge](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org.svg?branch=master)
+
 # tlscanary Nubis deployment repository
 
 ## Objective
