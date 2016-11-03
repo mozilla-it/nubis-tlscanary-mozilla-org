@@ -7,7 +7,7 @@ REPO_DIR=/var/lib/ssl_compat
 
 # Ensure the repo is tidy
 cleanup () {
-  cd $REPO_DIR
+  cd $REPO_DIR || exit
   /usr/bin/git describe --always --tags --dirty > _revision.info
   find $REPO_DIR -type d \! -perm 0755 -exec chmod 0755 {} \;
   find $REPO_DIR -type f \! -perm 0644 -exec chmod 0644 {} \;
@@ -22,7 +22,7 @@ then
 fi
 
 # Otherwise, let's just git pull when needed
-cd $REPO_DIR
+cd $REPO_DIR || exit
 /usr/bin/git remote update
 
 LOCAL_REV=$(/usr/bin/git rev-parse master)
