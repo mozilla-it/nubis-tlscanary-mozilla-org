@@ -5,11 +5,12 @@
 
 include nubis_discovery
 
-nubis::discovery::service { "$project_name":
- tags     => [ 'apache' ],
- port     => 80,
- check    => "/usr/bin/curl -If http://localhost:80",
- interval => '30s',
+nubis::discovery::service {
+  $project_name:
+    tags     => [ 'apache' ],
+    port     => 80,
+    check    => '/usr/bin/curl -If http://localhost:80',
+    interval => '30s',
 }
 
 class {
@@ -24,15 +25,16 @@ class {
         proxy_ips => [ '127.0.0.1', '10.0.0.0/8' ];
 }
 
-apache::vhost { $::vhost_name:
-    port                        => 80,
-    default_vhost               => true,
-    docroot                     => '/var/www/html',
-    docroot_owner               => 'root',
-    docroot_group               => 'root',
-    block                       => ['scm'],
-    setenvif                    => 'X_FORWARDED_PROTO https HTTPS=on',
-    access_log_format           => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
+apache::vhost {
+  $::vhost_name:
+    port              => 80,
+    default_vhost     => true,
+    docroot           => '/var/www/html',
+    docroot_owner     => 'root',
+    docroot_group     => 'root',
+    block             => ['scm'],
+    setenvif          => 'X_FORWARDED_PROTO https HTTPS=on',
+    access_log_format => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
 
     rewrites => [
       {
