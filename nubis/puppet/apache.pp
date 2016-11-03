@@ -38,7 +38,7 @@ apache::vhost {
     rewrites          => [
       {
         comment      => 'HTTPS redirect',
-        rewrite_cond => ['%{HTTP:X-Forwarded-Proto}=http'],
+        rewrite_cond => ['%{HTTP:X-Forwarded-Proto} =http'],
         rewrite_rule => ['. https://%{HTTP:Host}%{REQUEST_URI} [L,R=permanent]'],
       }
     ]
