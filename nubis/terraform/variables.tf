@@ -1,4 +1,6 @@
-variable "account" {}
+variable "account" {
+  default = ""
+}
 
 variable "region" {
   default = "us-west-2"
