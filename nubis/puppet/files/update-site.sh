@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 # Copy repository contents to web root
 #
 
