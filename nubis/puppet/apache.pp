@@ -35,8 +35,7 @@ apache::vhost {
     block             => ['scm'],
     setenvif          => 'X_FORWARDED_PROTO https HTTPS=on',
     access_log_format => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
-
-    rewrites => [
+    rewrites          => [
       {
         comment      => 'HTTPS redirect',
         rewrite_cond => ['%{HTTP:X-Forwarded-Proto}=http'],
