@@ -10,5 +10,5 @@ setgid root
 script
   exec >> /var/log/apache_exporter.log
   exec 2>&1
-  exec /usr/local/bin/apache_exporter -telemetry.address :9107
+  exec /usr/local/bin/apache_exporter -telemetry.address :9103
 end script

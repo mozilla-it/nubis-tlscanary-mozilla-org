@@ -20,7 +20,7 @@ export PATH
 
 name=apache_exporter
 program="/usr/local/bin/$name"
-args="-telemetry.address :9107"
+args="-telemetry.address :9103"
 pidfile=/var/run/$name.pid
 user=root
 group=root
