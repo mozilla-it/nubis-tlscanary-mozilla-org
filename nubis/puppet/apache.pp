@@ -35,6 +35,7 @@ apache::vhost { 'tlscanary':
     block             => ['scm'],
     setenvif          => 'X_FORWARDED_PROTO https HTTPS=on',
     access_log_format => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
+    custom_fragment   => 'FileETag None',
     rewrites          => [
       {
         comment      => 'HTTPS redirect',
