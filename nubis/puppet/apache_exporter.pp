@@ -42,9 +42,9 @@ case $::osfamily {
 }
 
 file { '/etc/consul/svc-apache-exporter.json':
-  ensure  => file,
-  owner   => root,
-  group   => root,
-  mode    => '0644',
-  source  => 'puppet:///nubis/files/svc-apache-exporter.json',
+  ensure => file,
+  owner  => root,
+  group  => root,
+  mode   => '0644',
+  source => 'puppet:///nubis/files/svc-apache-exporter.json',
 }
