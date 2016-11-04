@@ -11,6 +11,7 @@ fluentd::source { 'apache_access':
   tag        => 'forward.apache.access',
   config     => {
     'path' => '/var/log/apache2/*access*log',
+    'pos_file' => '/var/log/apache2/access.log.pos',
   },
 }
 
@@ -20,6 +21,7 @@ fluentd::source { 'apache_error':
   format     => '/^\[[^ ]* (?<time>[^\]]*)\] \[(?<level>[^\]]*)\] \[pid (?<pid>[^\]]*)\] \[client (?<client>[^\]]*)\] (?<message>.*)$/',
   tag        => 'forward.apache.error',
   config     => {
-    'path' => '/var/log/apache2/error.log',
+    'path' => '/var/log/apache2/*error.log',
+    'pos_file' => '/var/log/apache2/error.log.pos',
   },
 }
