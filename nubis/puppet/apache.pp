@@ -36,6 +36,11 @@ apache::vhost { 'tlscanary':
     setenvif          => 'X_FORWARDED_PROTO https HTTPS=on',
     access_log_format => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
     custom_fragment   => 'FileETag None',
+    headers           => [
+      "set X-Nubis-Version ${project_version}",
+      "set X-Nubis-Project ${project_name}",
+      "set X-Nubis-Build   ${packer_build_name}",
+    ],
     rewrites          => [
       {
         comment      => 'HTTPS redirect',
