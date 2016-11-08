@@ -1,4 +1,5 @@
-![build badge](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org.svg?branch=master)
+[![Build
+Status](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org.svg?branch=master)](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org)
 
 # tlscanary Nubis deployment repository
 
