@@ -1,5 +1,6 @@
-[![Build
-Status](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org.svg?branch=master)](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org)
+Travis CI: [![Travis Status](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org.svg?branch=master)](https://travis-ci.org/mozilla-it/nubis-tlscanary-mozilla-org)
+Jenkins Build Status: [![Jenkins Build Status](https://ci.tlscanary.admin.us-west-2.tlscanary.nubis.allizom.org/job/tlscanary-build/)](https://ci.tlscanary.admin.us-west-2.tlscanary.nubis.allizom.org/buildStatus/icon?job=tlscanary-build?style=plastic)
+Jenkins Deployment Status: [![Jenkins Deployment Status](https://ci.tlscanary.admin.us-west-2.tlscanary.nubis.allizom.org/job/tlscanary-deployment/)](https://ci.tlscanary.admin.us-west-2.tlscanary.nubis.allizom.org/buildStatus/icon?job=tlscanary-deployment?style=plastic)
 
 # tlscanary Nubis deployment repository
 
