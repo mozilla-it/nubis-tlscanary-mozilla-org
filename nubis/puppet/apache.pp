@@ -15,6 +15,7 @@ nubis::discovery::service {
 
 class {
     'apache':
+        mpm_module          => 'event',
         default_mods        => true,
         default_vhost       => false,
         default_confd_files => false,
