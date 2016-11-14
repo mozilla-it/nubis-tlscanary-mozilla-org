@@ -9,6 +9,7 @@ module "worker" {
   elb          = "${module.load_balancer.name}"
   ssh_key_file = "${var.ssh_key_file}"
   ssh_key_name = "${var.ssh_key_name}"
+  max_instances = 2
 }
 
 module "load_balancer" {
