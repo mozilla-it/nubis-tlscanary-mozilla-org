@@ -6,6 +6,6 @@ ALERT ApacheUptimeTest
     type = "developer"
   }
   ANNOTATIONS {
-    summary = "Uptime not increasing as expected (multiple restarts?) on {{ $labels.instance }}"
+    summary = "Uptime not increasing as expected (multiple restarts?) on {{ $labels.instance }}",
     description = "{{ $labels.instance }} is showing an Apache uptime rate increase that's more than 10% off expected norm"
   }
