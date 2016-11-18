@@ -1,6 +1,6 @@
 ALERT ApacheUptimeTest
   IF ( abs(rate(apache_uptime_seconds_total[2m]) - 1 ) > 0.1 ) * ON(instance) GROUP_LEFT(project, environment, account) nubis * ON(instance) GROUP_LEFT(instance_type, availability_zone, region) aws
-  FOR 5m
+  FOR 10m
   LABELS {
     severity = "info",
     type = "developer"
