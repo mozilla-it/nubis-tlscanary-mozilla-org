@@ -9,3 +9,14 @@ ALERT ApacheUptimeTest
     summary = "Uptime not increasing as expected (multiple restarts?) on {{ $labels.instance }}",
     description = "{{ $labels.instance }} is showing an Apache uptime rate increase that's more than 10% off expected norm"
   }
+
+ALERT ApacheErrorRate
+  IF (100 * sum(rate(apache_cnt_code{code !~ "[2-3][0-9][0-9]"}[5m]) * ON(instance) GROUP_LEFT(project, environment, account) nubis * ON(instance) GROUP_LEFT(instance_type, availability_zone, region) aws) by (code, project, environment, account, region)/ ON (project) GROUP_LEFT(account) sum(rate(apache_cnt_code[5m])* ON(instance) GROUP_LEFT(project, environment, account) nubis ) by (project)) > 5
+  FOR 10m
+  LABELS {
+    severity = "critical"
+  }
+  ANNOTATIONS {
+    summary = "HTTP Error rates > 5%",
+    description = "{{ $labels.instance }} is showing an Apache error rate of {{ $$value }}%, which is more than 5%"
+  }
