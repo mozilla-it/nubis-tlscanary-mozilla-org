@@ -27,8 +27,6 @@ class {
         service_enable      => false,
         service_ensure      => false;
     'apache::mod::status':;
-    'apache::mod::reqtimeout':
-        timeouts => ["header=${timeout}", "body=${timeout}"];
     'apache::mod::remoteip':
         proxy_ips => [ '127.0.0.1', '10.0.0.0/8' ];
     'apache::mod::expires':
