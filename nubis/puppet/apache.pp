@@ -44,7 +44,7 @@ apache::vhost { 'tlscanary':
     setenvif           => [
       'X_FORWARDED_PROTO https HTTPS=on',
       'Remote_Addr 127\.0\.0\.1 local',
-    ]
+    ],
     access_log_env_var => '!local',
     access_log_format  => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
     custom_fragment    => "
