@@ -45,7 +45,12 @@ apache::vhost { 'tlscanary':
     block             => ['scm'],
     setenvif          => 'X_FORWARDED_PROTO https HTTPS=on',
     access_log_format => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
-    custom_fragment   => 'FileETag None',
+    custom_fragment   => "
+# Clustered without coordination
+FileETag None
+# Keep ELBs happily idling for a long while
+RequestReadTimeout header=${timeout} body=${timeout}
+",
     headers           => [
       "set X-Nubis-Version ${project_version}",
       "set X-Nubis-Project ${project_name}",
