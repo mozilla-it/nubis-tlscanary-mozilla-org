@@ -18,5 +18,5 @@ ALERT ApacheErrorRate
   }
   ANNOTATIONS {
     summary = "HTTP Error rates > 5%",
-    description = "{{ $labels.instance }} is showing an Apache error rate of {{ $$value }}%, which is more than 5%"
+    description = "{{ $labels.instance }} is showing an Apache error rate of {{ $value }}%, which is more than 5%"
   }
