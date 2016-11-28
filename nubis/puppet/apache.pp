@@ -34,27 +34,31 @@ class {
 }
 
 apache::vhost { 'tlscanary':
-    port              => 80,
-    default_vhost     => true,
-    docroot           => '/var/www/html',
-    directoryindex    => 'index.htm',
-    docroot_owner     => 'root',
-    docroot_group     => 'root',
-    block             => ['scm'],
-    setenvif          => 'X_FORWARDED_PROTO https HTTPS=on',
-    access_log_format => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
-    custom_fragment   => "
+    port               => 80,
+    default_vhost      => true,
+    docroot            => '/var/www/html',
+    directoryindex     => 'index.htm',
+    docroot_owner      => 'root',
+    docroot_group      => 'root',
+    block              => ['scm'],
+    setenvif           => [
+      'X_FORWARDED_PROTO https HTTPS=on',
+      'Remote_Addr 127\.0\.0\.1 local',
+    ]
+    access_log_env_var => '!local',
+    access_log_format  => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
+    custom_fragment    => "
 # Clustered without coordination
 FileETag None
 # Keep ELBs happily idling for a long while
 RequestReadTimeout header=${timeout} body=${timeout}
 ",
-    headers           => [
+    headers            => [
       "set X-Nubis-Version ${project_version}",
       "set X-Nubis-Project ${project_name}",
       "set X-Nubis-Build   ${packer_build_name}",
     ],
-    rewrites          => [
+    rewrites           => [
       {
         comment      => 'HTTPS redirect',
         rewrite_cond => ['%{HTTP:X-Forwarded-Proto} =http'],
