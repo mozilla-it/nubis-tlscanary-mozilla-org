@@ -43,9 +43,10 @@ apache::vhost { 'tlscanary':
     block              => ['scm'],
     setenvif           => [
       'X_FORWARDED_PROTO https HTTPS=on',
-      'Remote_Addr 127\.0\.0\.1 local',
+      'Remote_Addr 127\.0\.0\.1 internal',
+      'Remote_Addr ^10\. internal',
     ],
-    access_log_env_var => '!local',
+    access_log_env_var => '!internal',
     access_log_format  => '%a %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"',
     custom_fragment    => "
 # Clustered without coordination
