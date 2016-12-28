@@ -3,8 +3,8 @@
 $timeout = 120
 
 class { 'nubis_apache':
-  timeout => $timeout,
-  update_script_source => 'puppet:///nubis/files/update-site.sh',
+  timeout                => $timeout,
+  update_script_source   => 'puppet:///nubis/files/update-site.sh',
   update_script_interval => {
     minute => [ fqdn_rand(30), ( fqdn_rand(30) + 30 ) % 60],
   },
