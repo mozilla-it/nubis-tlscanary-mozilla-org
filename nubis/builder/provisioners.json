@@ -3,7 +3,7 @@
   {
     "type": "shell",
     "inline": [
-      "sudo /opt/admin-scripts/update-site.sh"
+      "sudo /usr/local/bin/nubis-update-site"
     ],
     "order": "99"
   }
