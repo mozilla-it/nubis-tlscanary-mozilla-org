@@ -5,6 +5,8 @@
 REPO_DIR=/var/lib/ssl_compat
 SOURCE_REPO=https://github.com/mwobensmith/ssl_compat.git
 
+DEPLOY=0
+
 # Ensure the repo is tidy
 cleanup () {
   cd $REPO_DIR || exit
@@ -19,6 +21,7 @@ then
   rm -rf $REPO_DIR
   /usr/bin/git clone $SOURCE_REPO $REPO_DIR
   cleanup
+  DEPLOY=1
 fi
 
 # Otherwise, let's just git pull when needed
@@ -34,8 +37,11 @@ if [ "$LOCAL_REV" != "$REMOTE_REV" ]
 then
   /usr/bin/git pull
   cleanup
+  DEPLOY=1
+fi
 
-  # Write to web root: /var/www/html
+# Write to web root if something has changed
+if [ "$DEPLOY" == "1" ]; then
   /usr/local/bin/atomic-rsync -a --cvs-exclude --delete $REPO_DIR/ /var/www/html/
 fi
 
