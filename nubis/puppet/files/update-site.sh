@@ -11,8 +11,6 @@ DEPLOY=0
 cleanup () {
   cd $REPO_DIR || exit
   /usr/bin/git describe --always --tags --dirty > _revision.txt
-  find $REPO_DIR -type d \! -perm 0755 -exec chmod 0755 {} \;
-  find $REPO_DIR -type f \! -perm 0644 -exec chmod 0644 {} \;
 }
 
 # Clone the repository if the local repo is empty or non-existent
