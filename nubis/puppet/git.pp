@@ -5,7 +5,7 @@ case $::osfamily {
     $git_package_version            = '2.7.3-1.46.amzn1'
   }
   'Debian', 'Ubuntu': {
-    $git_package_version            = '1:1.9.1-1ubuntu0.3'
+    $git_package_version            = '1:1.9.1-1ubuntu0.4'
   }
   default: {
     fail("Unknown git version for OS ${::osfamily}")
