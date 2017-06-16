@@ -23,3 +23,7 @@ variable "ssh_key_file" {
 variable "ssh_key_name" {
   default = ""
 }
+
+variable "root_storage_size" {
+  default = "16"
+}
