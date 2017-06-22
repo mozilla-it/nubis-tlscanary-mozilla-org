@@ -1,6 +1,3 @@
-[submodule "ssl_compat"]
-	path = ssl_compat
-	url = https://github.com/mwobensmith/ssl_compat.git
 [submodule "nubis/travis"]
 	path = nubis/travis
 	url = https://github.com/nubisproject/nubis-travis.git
